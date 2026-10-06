@@ -1,0 +1,19 @@
+# --- id Software's data is NOT redistributable: buy Wolfenstein 3D and copy the files into WOLF3D/ yourself
+WOLF3D/
+# --- local-only material: old experiments, extracted-art contact sheets, reference programs, the author's other projects
+archive/
+# --- generated
+build/
+release/
+config.mk
+tools/
+screenshots/_*
+__pycache__/
+*.pyc
+demo_raw*.avi
+# --- editor / OS
+*~
+*.swp
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,5 @@
+# --- downloaded / generated
+data/
+build/
+__pycache__/
+*.pyc

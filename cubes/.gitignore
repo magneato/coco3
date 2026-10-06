@@ -1,0 +1,13 @@
+# --- generated
+build/
+tools/
+config.mk
+__pycache__/
+*.pyc
+rec_raw*.avi
+# --- editor / OS
+*~
+*.swp
+.DS_Store
+.vscode/
+.idea/

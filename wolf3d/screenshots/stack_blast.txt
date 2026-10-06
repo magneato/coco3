@@ -1,0 +1,5 @@
+copy of 3198 bytes x 60, 1.79 MHz, emulated clock:
+  LDA ,X+ / STA ,Y+      (1 byte/iter)         2.103 s  = 19.62 cycles/byte  (1.00x)
+  LDD ,X++ / STD ,Y++    (2 bytes/iter)        1.235 s  = 11.52 cycles/byte  (1.70x)
+  PULS A,B,X,Y / PSHU A,B,X,Y (6 bytes/iter)   0.600 s  =  5.60 cycles/byte  (3.50x)
+  verified (1 = copy correct): [1, 1, 1]

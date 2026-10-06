@@ -1,0 +1,2 @@
+SHOT frame=4600 posx=1C80 posy=1980 ang=0 fcount=388 spin=462 aimode=0 PC=2138 health=100 ammo=14 score=000000 lives=3 q=0 ob=7
+0000.png

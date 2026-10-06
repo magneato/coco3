@@ -1,0 +1,6 @@
+SHOT frame=4400 posx=0680 posy=0E80 ang=64 fcount=119 spin=1 aimode=0 PC=313D health=100 ammo=6 score=000100 lives=3 q=0 ob=18
+SHOT frame=4600 posx=0680 posy=0E80 ang=64 fcount=226 spin=263 aimode=0 PC=313C health=100 ammo=0 score=000100 lives=3 q=0 ob=18
+SHOT frame=4900 posx=0680 posy=0E80 ang=64 fcount=526 spin=459 aimode=0 PC=214E health=100 ammo=0 score=000100 lives=3 q=0 ob=18
+0000.png
+0001.png
+0002.png

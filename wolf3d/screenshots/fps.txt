@@ -1,0 +1,8 @@
+moving layout quality 0:
+  quality 0: average 18.9 fps over 252 frames (53.0 ms/frame)
+moving layout quality 1:
+  quality 1: average 20.7 fps over 277 frames (48.2 ms/frame)
+moving layout quality 2:
+  quality 2: average 24.0 fps over 320 frames (41.7 ms/frame)
+moving layout quality 3:
+  quality 3: average 30.2 fps over 403 frames (33.1 ms/frame)

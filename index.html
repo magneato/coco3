@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>coco3 — what a 1986 CoCo 3 can do</title>
+<meta name="description" content="Wolfenstein 3D, fractals, a live-music vector cube and a self-taught handwriting reader, all on a 1.79 MHz Tandy Color Computer 3.">
+<meta property="og:title" content="coco3 — what a 1986 Color Computer 3 can do">
+<meta property="og:description" content="Wolfenstein 3D, fractals, a cube that sings and a CoCo that learns to read, all on a 1.79 MHz 6809.">
+<meta property="og:image" content="https://magneato.github.io/coco3/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #0b0d0b;
+    --panel: #121612;
+    --line: #243024;
+    --ink: #d8e8d0;
+    --dim: #8fa38a;
+    --green: #22e01e;
+    --green-ink: #062006;
+    --amber: #ffb000;
+    --code: #0e140e;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font: 16px/1.55 "IBM Plex Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  }
+  a { color: var(--green); text-underline-offset: 3px; }
+  a:hover { color: var(--amber); }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
+  img { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+  /* the green screen */
+  .screen {
+    margin: 32px auto 8px;
+    max-width: 640px;
+    background: var(--green);
+    color: var(--green-ink);
+    border: 14px solid #1a1d1a;
+    border-radius: 18px;
+    box-shadow: 0 0 0 2px #2c332c, 0 0 60px rgba(34, 224, 30, .18);
+    padding: 20px 22px;
+    font-size: clamp(12px, 2.6vw, 17px);
+    line-height: 1.35;
+    text-transform: uppercase;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .cursor { display: inline-block; width: .6em; background: var(--green-ink); animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { background: transparent; } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+  header p.lede { max-width: 720px; margin: 22px auto 0; color: var(--dim); text-align: center; }
+  header p.lede em { color: var(--ink); font-style: normal; }
+
+  h2 {
+    margin: 56px 0 18px;
+    font-size: 15px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: fill; display: block; background: #000; border-bottom: 1px solid var(--line); }
+  .card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card h3 { margin: 0; font-size: 18px; color: var(--green); }
+  .card h3 small { color: var(--dim); font-weight: normal; font-size: 13px; margin-left: 6px; }
+  .card p { margin: 0; color: var(--ink); }
+  .card ul { margin: 2px 0 0; padding-left: 18px; color: var(--dim); font-size: 14px; }
+  .card ul li { margin: 3px 0; }
+  .card .links { margin-top: auto; padding-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; }
+  .card.soon { border-style: dashed; }
+  .card.soon .body { justify-content: center; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
+  .rules li { border-left: 3px solid var(--green); padding: 2px 0 2px 12px; color: var(--dim); font-size: 14px; }
+  .rules b { color: var(--ink); font-weight: 600; }
+
+  pre.code {
+    background: var(--code);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  pre.code .c { color: var(--dim); }
+  pre.code .k { color: var(--amber); }
+  .teaser p { max-width: 820px; }
+  .note { color: var(--dim); font-size: 13px; }
+
+  footer { margin: 64px 0 40px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="screen" role="img" aria-label="A CoCo 3 Disk BASIC start-up screen with LOADM typed at the prompt">DISK EXTENDED COLOR BASIC 2.1
+COPR. 1982, 1986 BY TANDY
+UNDER LICENSE FROM MICROSOFT
+AND MICROWARE SYSTEMS CORP.
+
+OK
+LOADM"WOLF3D":EXEC<span class="cursor">&nbsp;</span></div>
+<p class="lede">A Motorola 6809 at 1.79 MHz, the GIME video chip, a floppy drive and a green screen that says
+<em>OK</em>. Sold by Radio Shack in 1986. This is what it can do when it is asked nicely.</p>
+</header>
+
+<main>
+<h2>The programs</h2>
+<div class="grid">
+  <article class="card">
+    <img src="wolf3d/screenshots/walking_4x3.png" alt="Wolfenstein 3D running on the CoCo 3: a corridor of stone walls, the status bar with BJ's face below" width="640" height="480">
+    <div class="body">
+      <h3>wolf3d <small>Wolfenstein 3D</small></h3>
+      <p>The real first level, art, status bar and sounds, full screen, with an autopilot that plays it for you.</p>
+      <ul>
+        <li>writes ~150 wall-drawing routines at boot</li>
+        <li>no division while playing; 6 bytes per 22 cycles via the stack</li>
+        <li>~26 frames per second in play, sound at 3.9 kHz</li>
+      </ul>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/wolf3d">source &amp; README</a><a href="wolf3d/demo.mp4">video</a></div>
+    </div>
+  </article>
+  <article class="card">
+    <img src="fractals/screenshots/mandelbrot.png" alt="The Mandelbrot set in red, orange and yellow bands, drawn by the CoCo 3" width="636" height="472">
+    <div class="body">
+      <h3>fractals <small>FRACTAL</small></h3>
+      <p>Nine fractals and an effects reel: zooms, dissolves, a spinning picture, munching squares.</p>
+      <ul>
+        <li>no multiply in the inner loop: a table of squares</li>
+        <li>one Mandelbrot step = three table reads</li>
+        <li>matched byte for byte against a reference</li>
+      </ul>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/fractals">source &amp; README</a><a href="fractals/fractals.mp4">video</a></div>
+    </div>
+  </article>
+  <article class="card">
+    <img src="cubes/screenshots/shaded_cube.png" alt="A solid cube with red, yellow and cyan sides, an oscilloscope trace below it" width="636" height="472">
+    <div class="body">
+      <h3>cubes <small>CUBE</small></h3>
+      <p>Dots become a wobbling cube, then a solid shaded one, to a soundtrack the CPU mixes itself.</p>
+      <ul>
+        <li>9 table reads per point, no multiply</li>
+        <li>3-voice tracker mixed 3,934 times a second</li>
+        <li>the third voice's waveform is the cube's own outline</li>
+      </ul>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/cubes">source &amp; README</a><a href="cubes/cubescene.mp4">video</a></div>
+    </div>
+  </article>
+  <article class="card">
+    <img src="nsx6809/screenshots/06_keyboard_drawn_7.png" alt="A 7 drawn on a grey grid; the panel says it is a 7, 86 percent sure" width="1278" height="956">
+    <div class="body">
+      <h3>nsx6809 <small>a CoCo that learns</small></h3>
+      <p>One disk teaches the CoCo to read handwritten digits. The other lets you draw one and asks it what it is.</p>
+      <ul>
+        <li>learns from 6,200 examples in 35 minutes, 512 KB, integers only</li>
+        <li>88.5% on digits it has never seen</li>
+        <li>the CoCo's model matches a reference byte for byte</li>
+      </ul>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/nsx6809">source &amp; README</a></div>
+    </div>
+  </article>
+  <article class="card soon">
+    <div class="body">
+      <h3>doom <small>not yet</small></h3>
+      <p>Working on the inv sqrt hack, AI using real inference, and so on.</p>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/doom">watch this space</a></div>
+    </div>
+  </article>
+</div>
+
+<h2>House rules</h2>
+<ul class="rules">
+  <li><b>No division where it hurts.</b> Work it out once into a table, then look it up.</li>
+  <li><b>Write the code that writes the code.</b> Straight-line stores beat any loop.</li>
+  <li><b><code>PSHU</code> is a blitter.</b> Six bytes in 22 cycles, riding the stack.</li>
+  <li><b>2 MB through an 8 KB keyhole.</b> The GIME's mapper swaps a page in with one store.</li>
+  <li><b>Draw less.</b> Interlace, coarse-to-fine, guess from the neighbours, clear only what changed.</li>
+  <li><b>Bresenham everywhere.</b> Keep the fraction in an error term; step when it spills over.</li>
+  <li><b>Trust nothing you haven't diffed.</b> Every maths-heavy program has a twin it's checked against, byte for byte.</li>
+  <li><b>Real disks.</b> Every program boots from a Disk BASIC floppy with <code>LOADM</code>.</li>
+</ul>
+
+<section class="teaser">
+<h2>On the bench</h2>
+<p><b>Working on the inv sqrt hack, AI using real inference, and so on.</b> Every 3D engine wants 1/√x, and the
+textbook way costs a square root and a division. <i>Quake III Arena</i> (1999) did it like this:</p>
+<pre class="code"><span class="k">float</span> Q_rsqrt( <span class="k">float</span> number )
+{
+    <span class="k">long</span> i;
+    <span class="k">float</span> x2, y;
+    <span class="k">const float</span> threehalfs = 1.5F;
+
+    x2 = number * 0.5F;
+    y  = number;
+    i  = * ( <span class="k">long</span> * ) &amp;y;            <span class="c">// look at the float's bits as an integer</span>
+    i  = 0x5f3759df - ( i &gt;&gt; 1 );    <span class="c">// halve the exponent; the magic number does the rest</span>
+    y  = * ( <span class="k">float</span> * ) &amp;i;
+    y  = y * ( threehalfs - ( x2 * y * y ) );   <span class="c">// 1st iteration</span>
+<span class="c">//  y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed</span>
+
+    <span class="k">return</span> y;
+}</pre>
+<p>Not John Carmack's, as he said himself. The trail runs back through Gary Tarolli at 3dfx to Greg Walsh at Ardent
+Computer in the late 1980s, working with Cleve Moler, and before that to a 1986 note by William Kahan and K.C. Ng
+at Berkeley. In 2003 Chris Lomont worked out where the constant comes from. It's a decade-old idea passed from hand
+to hand by people deciding <b>what to optimize and what to drop</b>.</p>
+<p>The 6809 has no floating point at all, but Color BASIC's five-byte floats keep their exponent above the mantissa,
+which is all the trick needs. Next: that, monsters that decide with a trained network, and a DOOM-shaped engine
+around them.</p>
+<p class="note">Quoted from the Quake III Arena source (id Software, GPL); the first two comments are reworded.</p>
+</section>
+</main>
+
+<footer>
+  <span>Code: Clear BSD licence, © 2026 Neural Splines LLC</span>
+  <a href="https://github.com/magneato/coco3/blob/main/PATENTS.md">Neural Splines technology is patented: free for personal &amp; educational use</a>
+  <a href="https://github.com/magneato/coco3">github.com/magneato/coco3</a>
+  <a href="https://github.com/magneato/coco3/blob/main/IP.md">Credits &amp; other people's work</a>
+  <a href="https://github.com/magneato/coco3/blob/main/TLDR.md">TL;DR</a>
+  <span>Wolfenstein 3D is id Software's; this is an unofficial fan port and needs your own copy of the game.</span>
+</footer>
+</div>
+</body>
+</html>
