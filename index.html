@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>coco3 — what a 1986 CoCo 3 can do</title>
-<meta name="description" content="Wolfenstein 3D, fractals, a live-music vector cube and a self-taught handwriting reader, all on a 1.79 MHz Tandy Color Computer 3.">
+<meta name="description" content="DOOM with a floor that reflects, Wolfenstein 3D, fractals, a live-music vector cube and a self-taught handwriting reader, all on a 1.79 MHz Tandy Color Computer 3.">
 <meta property="og:title" content="coco3 — what a 1986 Color Computer 3 can do">
-<meta property="og:description" content="Wolfenstein 3D, fractals, a cube that sings and a CoCo that learns to read, all on a 1.79 MHz 6809.">
+<meta property="og:description" content="DOOM, Wolfenstein 3D, fractals, a cube that sings and a CoCo that learns to read, all on a 1.79 MHz 6809.">
 <meta property="og:image" content="https://magneato.github.io/coco3/social-preview.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
@@ -86,8 +86,21 @@
   .card ul { margin: 2px 0 0; padding-left: 18px; color: var(--dim); font-size: 14px; }
   .card ul li { margin: 3px 0; }
   .card .links { margin-top: auto; padding-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; }
-  .card.soon { border-style: dashed; }
-  .card.soon .body { justify-content: center; }
+  .card.new { position: relative; border-color: var(--amber); box-shadow: 0 0 0 1px var(--amber), 0 0 28px rgba(255, 176, 0, .18); }
+  /* the 1980s catalogue sticker */
+  .sticker {
+    position: absolute; top: -14px; right: -10px; z-index: 2;
+    width: 92px; height: 92px; display: grid; place-items: center;
+    background: #ffe600; color: #d00018;
+    font: 900 21px/1 "Arial Black", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.02em;
+    text-shadow: 1px 1px 0 #fff8a0;
+    clip-path: polygon(50% 0%, 61% 18%, 82% 7%, 81% 30%, 100% 34%, 87% 50%, 100% 66%, 81% 70%, 82% 93%, 61% 82%,
+                       50% 100%, 39% 82%, 18% 93%, 19% 70%, 0% 66%, 13% 50%, 0% 34%, 19% 30%, 18% 7%, 39% 18%);
+    transform: rotate(14deg);
+    animation: wiggle 1.6s ease-in-out infinite;
+  }
+  @keyframes wiggle { 0%, 100% { transform: rotate(14deg) scale(1); } 50% { transform: rotate(6deg) scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .sticker { animation: none; } }
 
   .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
   .rules li { border-left: 3px solid var(--green); padding: 2px 0 2px 12px; color: var(--dim); font-size: 14px; }
@@ -120,7 +133,7 @@ UNDER LICENSE FROM MICROSOFT
 AND MICROWARE SYSTEMS CORP.
 
 OK
-LOADM"WOLF3D":EXEC<span class="cursor">&nbsp;</span></div>
+LOADM"DOOM":EXEC<span class="cursor">&nbsp;</span></div>
 <p class="lede">A Motorola 6809 at 1.79 MHz, the GIME video chip, a floppy drive and a green screen that says
 <em>OK</em>. Sold by Radio Shack in 1986. This is what it can do when it is asked nicely.</p>
 </header>
@@ -128,6 +141,23 @@ LOADM"WOLF3D":EXEC<span class="cursor">&nbsp;</span></div>
 <main>
 <h2>The programs</h2>
 <div class="grid">
+  <article class="card new">
+    <div class="sticker" aria-hidden="true">NEW!</div>
+    <img src="doom/screenshots/cocodoom_4x3.png" alt="DOOM running on the CoCo 3: a tech-base corridor with a monster, DOOM's status bar below" width="640" height="480">
+    <div class="body">
+      <h3>doom <small>DOOM, Freedoom's E1M1</small></h3>
+      <p>The real first level on a grid, DOOM's lighting and status bar, four kinds of monster, sound, and a floor that
+      reflects everything in real time.</p>
+      <ul>
+        <li>reflections cost 0.6% of the frame: the engine compiles them into its wall routines at boot</li>
+        <li>the disk holds palette numbers; the CoCo forges 30 pages of lit, dithered art itself, checked byte for byte</li>
+        <li>16 of 64 colours, chosen for what their blends can show; the dither is just a choice of page</li>
+        <li>found on the way: 85 wall classes × 3 bytes is one byte too many for a page, and the GIME shows its I/O
+        registers at $FE00 whatever page is mapped</li>
+      </ul>
+      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/doom">source &amp; README</a><a href="doom/cocodoom.mp4">video</a></div>
+    </div>
+  </article>
   <article class="card">
     <img src="wolf3d/screenshots/walking_4x3.png" alt="Wolfenstein 3D running on the CoCo 3: a corridor of stone walls, the status bar with BJ's face below" width="640" height="480">
     <div class="body">
@@ -180,13 +210,6 @@ LOADM"WOLF3D":EXEC<span class="cursor">&nbsp;</span></div>
       <div class="links"><a href="https://github.com/magneato/coco3/tree/main/nsx6809">source &amp; README</a></div>
     </div>
   </article>
-  <article class="card soon">
-    <div class="body">
-      <h3>doom <small>not yet</small></h3>
-      <p>Working on the inv sqrt hack, AI using real inference, and so on.</p>
-      <div class="links"><a href="https://github.com/magneato/coco3/tree/main/doom">watch this space</a></div>
-    </div>
-  </article>
 </div>
 
 <h2>House rules</h2>
@@ -226,8 +249,8 @@ Computer in the late 1980s, working with Cleve Moler, and before that to a 1986 
 at Berkeley. In 2003 Chris Lomont worked out where the constant comes from. It's a decade-old idea passed from hand
 to hand by people deciding <b>what to optimize and what to drop</b>.</p>
 <p>The 6809 has no floating point at all, but Color BASIC's five-byte floats keep their exponent above the mantissa,
-which is all the trick needs. Next: that, monsters that decide with a trained network, and a DOOM-shaped engine
-around them.</p>
+which is all the trick needs. DOOM now runs on a grid; next come that trick, monsters that decide with a trained
+network, and real sectors with floors and ceilings at different heights.</p>
 <p class="note">Quoted from the Quake III Arena source (id Software, GPL); the first two comments are reworded.</p>
 </section>
 </main>
@@ -239,6 +262,7 @@ around them.</p>
   <a href="https://github.com/magneato/coco3/blob/main/IP.md">Credits &amp; other people's work</a>
   <a href="https://github.com/magneato/coco3/blob/main/TLDR.md">TL;DR</a>
   <span>Wolfenstein 3D is id Software's; this is an unofficial fan port and needs your own copy of the game.</span>
+  <span>DOOM is a trademark of its owners; doom/ is an unofficial fan project playing Freedoom (© Freedoom contributors, BSD licence).</span>
 </footer>
 </div>
 </body>

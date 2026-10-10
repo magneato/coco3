@@ -1,0 +1,12 @@
+SHOT frame=5300 posx=0580 posy=2580 ang=0 fcount=121 spin=463 aimode=0 PC=2149 health=100 ammo=8 score=000000 lives=3 q=0 ob=7
+SHOT frame=5700 posx=13A0 posy=2580 ang=0 fcount=288 spin=1 aimode=0 PC=D7A5 health=100 ammo=8 score=000000 lives=3 q=0 ob=11
+SHOT frame=6000 posx=0F35 posy=28E6 ang=200 fcount=362 spin=1 aimode=0 PC=D83E health=74 ammo=8 score=000000 lives=3 q=0 ob=4
+SHOT frame=6400 posx=113D posy=26A6 ang=446 fcount=455 spin=1 aimode=1 PC=28A5 health=70 ammo=6 score=000100 lives=3 q=0 ob=9
+SHOT frame=7400 posx=18A7 posy=20F4 ang=392 fcount=678 spin=1 aimode=1 PC=28B9 health=70 ammo=1 score=000300 lives=3 q=0 ob=13
+SHOT frame=8400 posx=191E posy=1FE5 ang=121 fcount=927 spin=1 aimode=1 PC=269D health=50 ammo=0 score=000300 lives=3 q=0 ob=11
+0000.png
+0001.png
+0002.png
+0003.png
+0004.png
+0005.png

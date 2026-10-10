@@ -23,7 +23,7 @@ This is what it did.
 | ![](fractals/screenshots/mandelbrot.png) | [**fractals**](fractals/) | Nine fractals and an effects reel with no multiply in the inner loop, checked byte for byte against a reference |
 | ![](cubes/screenshots/shaded_cube.png) | [**cubes**](cubes/) | A cube of dots turning into a solid shaded cube, with a three-voice soundtrack the CPU mixes live; one voice *is* the cube |
 | ![](nsx6809/screenshots/06_keyboard_drawn_7.png) | [**nsx6809**](nsx6809/) | Learns to read handwritten digits (on its own CPU, in 35 minutes, 512 KB, integer only), then reads yours |
-| | [**doom**](doom/) | not yet |
+| ![](doom/screenshots/cocodoom_4x3.png) | [**doom**](doom/) | **New!** Freedoom's E1M1 with DOOM's lighting and status bar, four kinds of monster, and a floor that reflects everything in real time for 0.6% of the frame |
 
 Short on time? [TLDR.md](TLDR.md) has the one-screen version. The landing page is [index.html](index.html).
 
@@ -48,8 +48,8 @@ Disk BASIC floppy images with `lwasm` (lwtools), boot them in MAME's CoCo 3, typ
 record what happens with `--video`. Every disk also runs on real hardware: copy the `.DSK` to a floppy or a
 CoCoSDC and `LOADM` it.
 
-Wolfenstein 3D needs **your own copy** of the game's data files; see [IP.md](IP.md). Everything else needs nothing
-but the tools.
+Wolfenstein 3D needs **your own copy** of the game's data files; see [IP.md](IP.md). DOOM uses Freedoom's free data,
+which `doom/setup.sh` fetches. Everything else needs nothing but the tools.
 
 ---
 
@@ -97,7 +97,8 @@ of exact, and the bits of a float read as if they were an integer.
 The 6809 has no floating-point hardware at all. But Color BASIC carries its own five-byte floats (an exponent byte
 above a four-byte mantissa), and the trick only needs the exponent to sit above the mantissa. So: the inverse
 square root hack on a CoCo 3, real inference deciding what the monsters do (NSX6809 already runs a trained network
-from a 4.7 KB program), and so on. See [doom/](doom/).
+from a 4.7 KB program), and so on. [doom/](doom/) now plays Freedoom's E1M1 on a grid (Stage A); these are for
+Stage B, real sectors with heights ([doom/docs/PLAN.md](doom/docs/PLAN.md)).
 
 ---
 

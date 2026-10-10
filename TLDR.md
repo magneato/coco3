@@ -63,9 +63,23 @@
   * the drawing program's answers are bit-exact.
 * **Run:** `cd nsx6809; ./get_mnist.sh; ./run.sh --train; ./run.sh`.
 
-## doom — not yet
-* **On the bench:** the Quake III inverse square root hack on 6809 floats, monsters driven by real inference, and so on.
-  See the [README](README.md).
+## doom — DOOM (Freedoom E1M1), New!
+* **What:** Freedoom's E1M1 rasterised onto a grid, with DOOM's 128-unit walls, COLORMAP lighting and status bar;
+  zombiemen, shotgun guys, imps and demons; Freedoom's sounds. Free data: the disk can be shared.
+* **Novel:**
+  * a **floor that reflects** walls, monsters and pickups in real time, for **0.6%** of the frame: baked into
+    the column routines the engine compiles at boot;
+  * the **dither is a page choice**: every frame paints rows of one parity, so a screen-locked 2×2 Bayer pattern
+    costs nothing;
+  * a **palette chosen for its blends**: 16 of the GIME's 64 colours picked for what their mixtures can show
+    (47% less colour error);
+  * **the boot is the build**: the disk carries lossy-RLE palette indices (35%), and the CoCo forges 30 pages of
+    lit, dithered art itself (8 light bands × 2 phases);
+  * 26 extra **taller-than-the-view** column classes, so near walls grow the way DOOM's do.
+* **Numbers:** 15.9 fps moving with 40 strips; one 35-track disk (54 of 68 granules).
+* **Proof:** all 30 boot-forged pages are read back out of the emulated CoCo's RAM and match a Python twin **byte
+  for byte**.
+* **Run:** `cd doom; ./setup.sh; ./run.sh` · video: `cocodoom.mp4`.
 
 ---
 Licence: Clear BSD (BSD-3-Clause-Clear) for the code ([LICENSE.md](LICENSE.md)). **Patents:** Neural Splines technology (nsx6809's learning
