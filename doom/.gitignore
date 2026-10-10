@@ -1,0 +1,15 @@
+# --- Freedoom is an upstream checkout with its own git history (setup.sh clones it)
+freedoom/
+# --- generated
+build/
+screenshots/_*
+config.mk
+tools/
+__pycache__/
+*.pyc
+# --- editor / OS
+*~
+*.swp
+.DS_Store
+# --- local notes for the coding assistant: not published
+CLAUDE.md

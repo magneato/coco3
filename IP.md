@@ -28,6 +28,22 @@ generation what a ray caster is.
 * **Want to try without the game?** `wolf3d/release.sh` builds *Ashen Bastion*, the same engine with entirely
   original stand-in art, level and sounds. That disk may be shared freely.
 
+## Freedoom and id Software — DOOM
+[doom/](doom/) plays **Freedoom** (Phase 1, E1M1), the free game content made by the Freedoom project's
+contributors: levels, textures, sprites, the status bar, sounds and palettes. Freedoom is © 2001-2024 Contributors
+to the Freedoom project and is distributed under its BSD-style licence (`doom/freedoom/COPYING.adoc`).
+* **Freedoom's files are not in this repository.** `doom/setup.sh` clones Freedoom from
+  https://github.com/freedoom/freedoom into `doom/freedoom/`, which git ignores. Disks built from it carry Freedoom's
+  art and sounds, so pass Freedoom's copyright notice and licence along with them.
+* `doom/screenshots/` and `doom/cocodoom.mp4` show Freedoom's art as the CoCo 3 draws it. Freedoom's copyright
+  notice and licence apply to that art.
+* Freedoom's PLAYPAL and COLORMAP are generated at build time by Freedoom's own scripts (GPL-2.0+), which are run as
+  tools and not copied.
+* **DOOM** was created by **id Software**, and *DOOM* is a trademark of its owners. [doom/](doom/) is an
+  **unofficial fan project**, not affiliated with or endorsed by id Software, Bethesda or ZeniMax. No id Software
+  data or source code is used. The engine is written from scratch from the widely documented ideas (BSP, COLORMAP
+  lighting, the status bar layout).
+
 ## id Software — Quake III Arena
 The inverse square root routine quoted in the [README](README.md) is from the **Quake III Arena** source code,
 released by id Software under the GNU GPL (version 2). It is quoted for discussion, with two comments reworded, and is

@@ -1,0 +1,14 @@
+  t= 96.79  fcount  204.. 229   18.7 fps
+  t= 98.12  fcount  229.. 254   18.7 fps
+  t= 99.46  fcount  254.. 275   15.7 fps
+  t=100.80  fcount  275.. 297   16.5 fps
+  t=102.13  fcount  297.. 320   17.2 fps
+  t=103.47  fcount  320.. 340   15.0 fps
+  t=104.80  fcount  340.. 360   15.0 fps
+  t=106.14  fcount  360.. 379   14.2 fps
+  t=107.47  fcount  379.. 399   15.0 fps
+  t=108.81  fcount  399.. 421   16.5 fps
+  t=110.14  fcount  421.. 442   15.7 fps
+  t=111.47  fcount  442.. 461   14.2 fps
+  t=112.81  fcount  461.. 470   13.5 fps
+  quality 0: average 15.9 fps over 266 frames (62.7 ms/frame)
